@@ -5,8 +5,9 @@
 
 // My Code Starts Here
 
-function getTopRatedTutorialsForTags() {
-  return [{videoTitle: "Practice: Places"}]
+function getTopRatedTutorialsForTags(tag) {
+  if (tag === "Hard") return [{videoTitle: "Activity: Work"}];
+  return [{videoTitle: "Practice: Places"}];
 };
 
 export default getTopRatedTutorialsForTags;

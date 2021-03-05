@@ -6,6 +6,10 @@ describe('#getTopRatedTutorialsForTags', () => {
   });
 
   test('its should return "Practice: Places" video when "Medium" tage is given', () => {  
-    expect(getTopRatedTutorialsForTags("medium")[0].videoTitle).toBe('Katy');
+    expect(getTopRatedTutorialsForTags("medium")[0].videoTitle).toBe('Practice: Places');
+  });
+
+  test('its should return "Activity: Work" video when "Hard" tage is given', () => {  
+    expect(getTopRatedTutorialsForTags("Hard")[0].videoTitle).toBe('Activity: Work');
   });
 });
