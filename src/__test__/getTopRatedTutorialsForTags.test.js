@@ -8,16 +8,25 @@ describe('#getTopRatedTutorialsForTags', () => {
   test('its should return "Practice: Places" video when "Medium" tage is given', async () => { 
     const expected = await getTopRatedTutorialsForTags("Medium");
 
+    expect(expected.length).toBe(1)
     expect(expected[0].videoTitle).toBe('Practice: Places');
   });
 
   test('its should return "Activity: Work" video when "Hard" tage is given', async () => {  
     const expected = await getTopRatedTutorialsForTags("Hard");
     
+    expect(expected.length).toBe(1)
     expect(expected[0].videoTitle).toBe('Activity: Work');
   });
 
-  test('its should return an array with 2 videos when "Excitiinng" tage is given', async () => {
+  test('its should return "Learn: Vehicles" video when "Passive" tage is given', async () => {  
+    const expected = await getTopRatedTutorialsForTags('Passive');
+    
+    expect(expected.length).toBe(1)
+    expect(expected[0].videoTitle).toBe('Learn: Vehicles');
+  });
+
+  test('its should return an array with 2 videos when "Exciting" tage is given', async () => {
     const expected = await getTopRatedTutorialsForTags("Exciting");
 
     expect(expected.length).toBe(2); 
