@@ -4,10 +4,24 @@
 */
 
 // My Code Starts Here
+import axios from 'axios'
 
-function getTopRatedTutorialsForTags(tag) {
-  if (tag === "Hard") return [{videoTitle: "Activity: Work"}];
-  return [{videoTitle: "Practice: Places"}];
+async function getTopRatedTutorialsForTags(tag) {
+  const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
+
+  let data;
+
+  try {
+    data = await axios.get(videoApi).then(res => res.data);
+  } catch(err) {
+    console.log(err);
+  }
+
+  if (tag === "Hard") {
+    return [{videoTitle: "Activity: Work"}]
+  } else {
+    return data;
+  }
 };
 
 export default getTopRatedTutorialsForTags;

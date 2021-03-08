@@ -1,4 +1,4 @@
-[
+const mockData = [
   {
   "id": "3fda6df9-97aa-4039-ac22-5978e6c73d5f",
   "videoUrl": "https://thisurldoesnotactuallyexist.totallynotreal/3fda6df9-97aa-4039-ac22-5978e6c73d5f",
@@ -26,3 +26,5 @@
   "averageUserRating": 0.7529116068535009
   }
 ]
+
+export { mockData };
