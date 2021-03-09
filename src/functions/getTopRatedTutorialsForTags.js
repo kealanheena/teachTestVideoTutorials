@@ -6,7 +6,8 @@
 // My Code Starts Here
 import axios from 'axios'
 
-async function getTopRatedTutorialsForTags(tag) {
+async function getTopRatedTutorialsForTags(tags) {
+  const tagsArray = tags.split(',');
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
 
   let filteredVideoData;
@@ -14,8 +15,10 @@ async function getTopRatedTutorialsForTags(tag) {
   try {
     filteredVideoData = await axios.get(videoApi).then((res) => {
       return res.data.filter((data) => {
-        if(data.tags.includes(tag)) {
-          return data;
+        for(var i = 0; i < tagsArray.length; i++) {
+          if(data.tags.includes(tagsArray[i])) {
+            return data;
+          }
         }
         return false;
       })

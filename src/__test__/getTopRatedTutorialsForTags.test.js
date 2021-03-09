@@ -29,6 +29,16 @@ describe('#getTopRatedTutorialsForTags', () => {
   test('its should return an array with 2 videos when "Exciting" tage is given', async () => {
     const expected = await getTopRatedTutorialsForTags("Exciting");
 
-    expect(expected.length).toBe(2); 
+    expect(expected.length).toBe(2);
+    expect(expected[0].videoTitle).toBe('Practice: Places');
+    expect(expected[1].videoTitle).toBe('Activity: Work');
+  });
+
+  test('its should be able to take a comma seperated string and return videos for each item', async () => {
+    const expected = await getTopRatedTutorialsForTags("Medium,Hard");
+
+    expect(expected.length).toBe(2);
+    expect(expected[0].videoTitle).toBe('Practice: Places');
+    expect(expected[1].videoTitle).toBe('Activity: Work');
   });
 });
