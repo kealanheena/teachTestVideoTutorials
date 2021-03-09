@@ -8,15 +8,20 @@ import axios from 'axios'
 
 async function getTopRatedTutorialsForTags(tags) {
   const tagsArray = tags.split(',');
+  const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
+
+  tagsArray.forEach((tag) => {
+    tagsObject[tag] = true;
+  });
 
   let filteredVideoData;
 
   try {
     filteredVideoData = await axios.get(videoApi).then((res) => {
       return res.data.filter((data) => {
-        for(var i = 0; i < tagsArray.length; i++) {
-          if(data.tags.includes(tagsArray[i])) {
+        for(var i = 0; i < data.tags.length; i++) {
+          if(tagsObject[data.tags[i]]) {
             return data;
           }
         }
