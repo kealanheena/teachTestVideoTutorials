@@ -20,4 +20,11 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected[0].videoTitle).toBe('Activity: Work');
   });
 
+  test('it should return an array with the "Activity" video when "Activity: Work" is given as an argument', () => {
+    const expected = searchForTutorials("Activity");
+
+    expect(expected.length).toBe(1)
+    expect(expected[0].videoTitle).toBe('Activity: Work');
+  });
+
 });

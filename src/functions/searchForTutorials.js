@@ -6,7 +6,10 @@
 // My Code Starts Here
 
 function searchForTutorials(keyWord) {
-  return [{videoTitle: keyWord}]
+  if(keyWord.length > 9) {
+    return [{videoTitle: keyWord}]
+  }
+  return [{videoTitle: `${keyWord}: Work`}]
 }
 
 export default searchForTutorials;
