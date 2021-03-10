@@ -72,10 +72,17 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected[2].videoTitle).toBe('Learn: Vehicles');
   });
 
-  test('it should only return the top 20 videos', async () => {
+  test('it should only return the top 20 videos as a default', async () => {
     testConfig.isDataOver20Videos = true;
     const expected = await getTopRatedTutorialsForTags("Medium,Hard,Passive");
 
     expect(expected.length).toBe(20);
+  });
+
+  test('it should take a secound argumanet that is the number of videos you want returned', async () => {
+    testConfig.isDataOver20Videos = true;
+    const expected = await getTopRatedTutorialsForTags("Medium,Hard,Passive", 15);
+
+    expect(expected.length).toBe(15);
   });
 });

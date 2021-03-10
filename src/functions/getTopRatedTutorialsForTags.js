@@ -6,7 +6,7 @@
 // My Code Starts Here
 import axios from 'axios'
 
-async function getTopRatedTutorialsForTags(tags) {
+async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
   const tagsArray = tags.split(',');
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
@@ -43,7 +43,7 @@ async function getTopRatedTutorialsForTags(tags) {
 
     const filteredOrderedVideoData = filteredVideoData.sort(compare);
     
-    return filteredOrderedVideoData.slice(0, 20);
+    return filteredOrderedVideoData.slice(0, amountOfVideos);
   } catch(err) {
     console.log(err);
   }
