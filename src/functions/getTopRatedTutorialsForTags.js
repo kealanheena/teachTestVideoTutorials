@@ -11,14 +11,28 @@ async function getTopRatedTutorialsForTags(tags) {
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
 
+  // This is not my own code
+  function compare(itemA, itemB) {
+    const videoRatingA = itemA.averageUserRating;
+    const videoRatingB = itemB.averageUserRating;
+  
+    let comparison = 0;
+    if (videoRatingA > videoRatingB) {
+      comparison = -1;
+    } else if (videoRatingA < videoRatingB) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+  // end here
+  
+
   tagsArray.forEach((tag) => {
     tagsObject[tag] = true;
   });
 
-  let filteredVideoData;
-
   try {
-    filteredVideoData = await axios.get(videoApi).then((res) => {
+    const filteredVideoData = await axios.get(videoApi).then((res) => {
       return res.data.filter((data) => {
         for(var i = 0; i < data.tags.length; i++) {
           if(tagsObject[data.tags[i]]) {
@@ -28,11 +42,13 @@ async function getTopRatedTutorialsForTags(tags) {
         return false;
       })
     });
+
+    const filteredOrderedVideoData = filteredVideoData.sort(compare);
+    console.log(filteredOrderedVideoData)
+    return filteredOrderedVideoData;
   } catch(err) {
     console.log(err);
   }
-
-  return filteredVideoData;
 };
 
 export default getTopRatedTutorialsForTags;
