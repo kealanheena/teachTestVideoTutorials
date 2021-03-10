@@ -16,7 +16,7 @@ async function getTopRatedTutorialsForTags(tags) {
     const videoRatingB = itemB.averageUserRating;
 
     // So reviewed the previous code and checked the docs to make sure I understood it
-    // made it my own and refactored
+    // after checking doc I seen a cleaner way and refactored
     // If result is negative b is before a
     // If result is positive b is after a
     // If result is 0 b & a's position doesn't change
@@ -42,8 +42,8 @@ async function getTopRatedTutorialsForTags(tags) {
     });
 
     const filteredOrderedVideoData = filteredVideoData.sort(compare);
-
-    return filteredOrderedVideoData;
+    
+    return filteredOrderedVideoData.slice(0, 20);
   } catch(err) {
     console.log(err);
   }

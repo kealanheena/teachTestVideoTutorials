@@ -1,6 +1,12 @@
+import testConfig from '../__test__/testConfig';
 import getTopRatedTutorialsForTags from '../functions/getTopRatedTutorialsForTags'
 
 describe('#getTopRatedTutorialsForTags', () => {
+
+  beforeEach(() => {
+    testConfig.isDataOver20Videos = false;
+  });
+
   test('it should be a function', () => { 
     expect(getTopRatedTutorialsForTags).toBeInstanceOf(Function);
   });
@@ -55,5 +61,21 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected.length).toBe(2);
     expect(expected[0].videoTitle).toBe('Activity: Work');
     expect(expected[1].videoTitle).toBe('Practice: Places');
+  });
+
+  test('it should return all the mock data when "Medium,Hard,Passive" is passed', async () => {
+    const expected = await getTopRatedTutorialsForTags("Medium,Hard,Passive");
+
+    expect(expected.length).toBe(3);
+    expect(expected[0].videoTitle).toBe('Activity: Work');
+    expect(expected[1].videoTitle).toBe('Practice: Places');
+    expect(expected[2].videoTitle).toBe('Learn: Vehicles');
+  });
+
+  test('it should only return the top 20 videos', async () => {
+    testConfig.isDataOver20Videos = true;
+    const expected = await getTopRatedTutorialsForTags("Medium,Hard,Passive");
+
+    expect(expected.length).toBe(20);
   });
 });
