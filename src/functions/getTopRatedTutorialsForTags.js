@@ -7,9 +7,18 @@
 import axios from 'axios'
 
 async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
+  if (tags === '') {
+    return `Opps Seems you didn't input any tags`;
+  }
+  
   const tagsArray = tags.split(',');
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
+
+
+  tagsArray.forEach((tag) => {
+    tagsObject[tag] = true;
+  });
 
   function compare(itemA, itemB) {
     const videoRatingA = itemA.averageUserRating;
@@ -24,11 +33,6 @@ async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
     return videoRatingB - videoRatingA
   }
   
-
-  tagsArray.forEach((tag) => {
-    tagsObject[tag] = true;
-  });
-
   try {
     const filteredVideoData = await axios.get(videoApi).then((res) => {
       return res.data.filter((data) => {

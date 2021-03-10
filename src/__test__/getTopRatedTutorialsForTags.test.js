@@ -85,4 +85,10 @@ describe('#getTopRatedTutorialsForTags', () => {
 
     expect(expected.length).toBe(15);
   });
+
+  test('it should return a string asking the user to enter some tags if an empty string is entered', async () => {
+    const expected = await getTopRatedTutorialsForTags("");
+
+    expect(expected).toBe(`Opps Seems you didn't input any tags`);
+  });
 });
