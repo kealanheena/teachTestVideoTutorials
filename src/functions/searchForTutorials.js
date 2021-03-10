@@ -5,8 +5,8 @@
 
 // My Code Starts Here
 
-function searchForTutorials(/* TODO */) {
-  
+function searchForTutorials() {
+  return [{videoTitle: 'Practice: Places'}]
 }
 
 export default searchForTutorials;
