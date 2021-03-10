@@ -11,20 +11,18 @@ async function getTopRatedTutorialsForTags(tags) {
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
 
-  // This is not my own code
   function compare(itemA, itemB) {
     const videoRatingA = itemA.averageUserRating;
     const videoRatingB = itemB.averageUserRating;
-  
-    let comparison = 0;
-    if (videoRatingA > videoRatingB) {
-      comparison = -1;
-    } else if (videoRatingA < videoRatingB) {
-      comparison = 1;
-    }
-    return comparison;
+
+    // So reviewed the previous code and checked the docs to make sure I understood it
+    // made it my own and refactored
+    // If result is negative b is before a
+    // If result is positive b is after a
+    // If result is 0 b & a's position doesn't change
+
+    return videoRatingB - videoRatingA
   }
-  // end here
   
 
   tagsArray.forEach((tag) => {
@@ -44,7 +42,7 @@ async function getTopRatedTutorialsForTags(tags) {
     });
 
     const filteredOrderedVideoData = filteredVideoData.sort(compare);
-    console.log(filteredOrderedVideoData)
+
     return filteredOrderedVideoData;
   } catch(err) {
     console.log(err);
