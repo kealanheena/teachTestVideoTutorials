@@ -5,8 +5,8 @@
 
 // My Code Starts Here
 
-function searchForTutorials() {
-  return [{videoTitle: 'Practice: Places'}]
+function searchForTutorials(keyWord) {
+  return [{videoTitle: keyWord}]
 }
 
 export default searchForTutorials;
