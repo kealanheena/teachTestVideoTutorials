@@ -103,5 +103,13 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Learn: Vehicles');
     });
+
+    test('it should return an array with the "Activity: Work" & "Learn: Vehicles" video when "Trevor,Work" is given as an argument', () => {
+      const expected = searchForTutorials("Trevor,Work");
+  
+      expect(expected.length).toBe(2)
+      expect(expected[0].videoTitle).toBe('Activity: Work');
+      expect(expected[1].videoTitle).toBe('Learn: Vehicles');
+    });
   })
 });
