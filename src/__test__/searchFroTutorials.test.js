@@ -90,5 +90,18 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected[0].videoTitle).toBe('Practice: Places');
     });
 
+    test('it should return an array with the "Activity: Work" video when "Sam,Hard" is given as an argument', () => {
+      const expected = searchForTutorials("Sam,Hard");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Activity: Work');
+    });
+
+    test('it should return an array with the "Activity: Work" video when "Trevor,Passive" is given as an argument', () => {
+      const expected = searchForTutorials("Trevor,Passive");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Learn: Vehicles');
+    });
   })
 });
