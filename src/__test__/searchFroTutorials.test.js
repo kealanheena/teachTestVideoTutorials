@@ -81,4 +81,14 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected[0].videoTitle).toBe('Learn: Vehicles');
     });
   });
+
+  describe('if multiple comma seperated inputs are given', () => {
+    test('it should return an array with the "Practice: Places" video when "Medium,Katy" is given as an argument', () => {
+      const expected = searchForTutorials("Medium,Katy");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Practice: Places');
+    });
+
+  })
 });

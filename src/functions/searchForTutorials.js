@@ -7,7 +7,8 @@
 
 import { mockData } from '../__test__/mock-data/mockData';
 
-function searchForTutorials(keyWord) {
+function searchForTutorials(keyWords) {
+  const keyWordsArray = keyWords.split(',');
   const searchResult = mockData.filter((video)=> {
     const videoTagsObject = {};
     const videoTitleWordsObject = {};
@@ -25,8 +26,11 @@ function searchForTutorials(keyWord) {
       videoTitleWordsObject[word] = true;
     })
 
-    if(videoTitle === keyWord || teacherName === keyWord || videoTitleWordsObject[keyWord] || videoTagsObject[keyWord]) {
-      return [{videoTitle: keyWord}];
+    for(var i = 0; i < keyWordsArray.length; i++) {
+      const keyWord = keyWordsArray[i];
+      if(videoTitle === keyWord || teacherName === keyWord || videoTitleWordsObject[keyWord] || videoTagsObject[keyWord]) {
+        return [{videoTitle: keyWords}];
+      }
     }
     return false;
   })
