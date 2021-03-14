@@ -5,9 +5,7 @@
 
 // My Code Starts Here
 
-import { mockData } from '../__test__/mock-data/mockData';
-
-function searchForTutorials(keywords) {
+function searchForTutorials(keywords, data = []) {
   const keywordsArray = keywords.toUpperCase().split(',');
   const keywordsObject = {};
 
@@ -15,7 +13,7 @@ function searchForTutorials(keywords) {
     keywordsObject[keyword] = true;
   });
   
-  const searchResult = mockData.filter((video)=> {
+  const searchResult = data.filter((video)=> {
     const videoTags = video.tags
     const videoTitle = video.videoTitle.toUpperCase();
     const videoTitleNoSpecialChars = video.videoTitle.replace(/[^a-zA-Z ]/g, "");
