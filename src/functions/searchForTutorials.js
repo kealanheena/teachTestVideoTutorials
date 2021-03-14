@@ -5,11 +5,21 @@
 
 // My Code Starts Here
 
+import { mockData } from '../__test__/mock-data/mockData';
+
 function searchForTutorials(keyWord) {
-  if(keyWord.length > 9) {
-    return [{videoTitle: keyWord}]
-  }
-  return [{videoTitle: `${keyWord}: Work`}]
+  const returnData = mockData.filter((video)=> {
+    const videoTitle = video.videoTitle;
+    const seperatedVideoTitleArray = video.videoTitle.replace(/[^a-zA-Z ]/g, "").split(" ")
+
+    if(videoTitle === keyWord || seperatedVideoTitleArray.includes(keyWord)) {
+      return [{videoTitle: keyWord}];
+    }
+    return false;
+  })
+
+  return returnData
+  // return [{videoTitle: `${keyWord}: Work`}]
 }
 
 export default searchForTutorials;
