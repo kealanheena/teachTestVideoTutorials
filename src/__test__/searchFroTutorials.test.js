@@ -35,7 +35,7 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected[0].videoTitle).toBe('Activity: Work');
     });
 
-    test('it should still return correct response when capitlization is inconsistant', () => {
+    test('it should still return correct response when capitalization is inconsistent', () => {
       const expected = searchForTutorials("PrActIce: plaCEs");
   
       expect(expected.length).toBe(1)
@@ -64,6 +64,13 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Learn: Vehicles');
     });
+
+    test('it should still return correct response when capitalization is inconsistent', () => {
+      const expected = searchForTutorials("PaSSiVe");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Learn: Vehicles');
+    });
   });
 
   describe('if a keyword matches the teachers name', () => {
@@ -83,6 +90,13 @@ describe('#getTopRatedTutorialsForTags', () => {
 
     test('it should return an array with the "Learn: Vehicles" video when "Trevor" is given as an argument', () => {
       const expected = searchForTutorials("Trevor");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Learn: Vehicles');
+    });
+
+    test('it should still return correct response when capitalization is inconsistent', () => {
+      const expected = searchForTutorials("TRevOr");
   
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Learn: Vehicles');
@@ -113,6 +127,14 @@ describe('#getTopRatedTutorialsForTags', () => {
 
     test('it should return an array with the "Activity: Work" & "Learn: Vehicles" video when "Trevor,Work" is given as an argument', () => {
       const expected = searchForTutorials("Trevor,Work");
+  
+      expect(expected.length).toBe(2)
+      expect(expected[0].videoTitle).toBe('Activity: Work');
+      expect(expected[1].videoTitle).toBe('Learn: Vehicles');
+    });
+
+    test('it should still return correct response when capitalization is inconsistent', () => {
+      const expected = searchForTutorials("TrEVor,WoRK");
   
       expect(expected.length).toBe(2)
       expect(expected[0].videoTitle).toBe('Activity: Work');

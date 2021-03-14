@@ -23,11 +23,11 @@ function searchForTutorials(keyWords) {
 
     videoTags.forEach((tag) => {
       videoTagsObject[tag] = true;
-    })
+    });
     
     seperatedVideoTitleWordsArray.forEach((word) => {
       videoTitleWordsObject[word] = true;
-    })
+    });
 
     for(var i = 0; i < keyWordsArray.length; i++) {
       const keyWord = keyWordsArray[i];
