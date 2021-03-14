@@ -11,7 +11,9 @@ async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
     return `Opps Seems you didn't input any tags`;
   }
   
-  const tagsArray = tags.split(',');
+  const tagsArray = tags.split(',').map((tag) => {
+    return tag.toUpperCase();
+  });
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
 
@@ -36,8 +38,11 @@ async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
   try {
     const filteredVideoData = await axios.get(videoApi).then((res) => {
       return res.data.filter((data) => {
-        for(var i = 0; i < data.tags.length; i++) {
-          if(tagsObject[data.tags[i]]) {
+        const dataTags = data.tags;
+
+        for(var i = 0; i < dataTags.length; i++) {
+          const capitalizedTags = dataTags[i].toUpperCase();
+          if(tagsObject[capitalizedTags]) {
             return data;
           }
         }

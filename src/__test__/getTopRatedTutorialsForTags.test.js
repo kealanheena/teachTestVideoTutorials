@@ -91,4 +91,11 @@ describe('#getTopRatedTutorialsForTags', () => {
 
     expect(expected).toBe(`Opps Seems you didn't input any tags`);
   });
+
+  test('it should still return correct response when capitalization is inconsistent', async () => { 
+    const expected = await getTopRatedTutorialsForTags("MEdIum");
+
+    expect(expected.length).toBe(1)
+    expect(expected[0].videoTitle).toBe('Practice: Places');
+  });
 });
