@@ -50,6 +50,13 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Activity: Work');
     });
+
+    test('it should return an array with the "Activity: Work" video when "Passive" is given as an argument', () => {
+      const expected = searchForTutorials("Passive");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Learn: Vehicles');
+    });
   })
 
 });
