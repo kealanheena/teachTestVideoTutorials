@@ -86,10 +86,16 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected.length).toBe(15);
   });
 
-  test('it should return a string asking the user to enter some tags if an empty string is entered', async () => {
+  test('it should return an empty array if an empty string is entered as an argument', async () => {
     const expected = await getTopRatedTutorialsForTags("");
 
-    expect(expected).toBe([]);
+    expect(expected).toStrictEqual([]);
+  });
+  
+  test('it should return an empty array if undefined is entered as an argument', async () => {
+    const expected = await getTopRatedTutorialsForTags(undefined);
+
+    expect(expected).toStrictEqual([]);
   });
 
   test('it should still return correct response when capitalization is inconsistent', async () => { 

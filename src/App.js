@@ -11,29 +11,46 @@ class App extends React.Component {
       data: [],
       displayData: [],
       tags: '',
-      searchTerms: ''
+      searchTerms: '',
+      disabledTagButton: true,
+      disabledSearchButton: true
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.handleChangeTags = this.handleChangeTags.bind(this);
+    this.onClickTags = this.onClickTags.bind(this);
     this.handleChangeSearchTerms = this.handleChangeSearchTerms.bind(this);
     this.onClickSearchTerms = this.onClickSearchTerms.bind(this);
   }
 
-  handleChange(event) {
+  handleChangeTags(event) {
+    if(event.target.value) {
+      this.setState({ disabledTagButton: false });
+    } else {
+      this.setState({ disabledTagButton: true });
+    }
+
     this.setState({ tags: event.target.value });
   }
 
-  async onClick() {
+  async onClickTags() {
     const updatedData = await getTopRatedTutorialsForTags(this.state.tags);
     this.setState({ 
       data: updatedData,
       displayData: updatedData
     });
+
+
   }
 
   handleChangeSearchTerms(event) {
     console.log(event.target.value)
+
+    if(event.target.value) {
+      this.setState({ disabledSearchButton: false });
+    } else {
+      this.setState({ disabledSearchButton: true });
+    }
+
     this.setState({ searchTerms: event.target.value });
   }
 
@@ -53,8 +70,8 @@ class App extends React.Component {
           <h1 className="Title">Video Tutorials</h1>
           <label htmlFor="tags">enter tags seperated by commas</label>
           <i>e.g. Hard,Exciting,Passive</i>
-          <input id="tags" onChange={this.handleChange} placeholder="TAGS" value={this.state.tags}/>
-          <button onClick={this.onClick}>
+          <input id="tags" onChange={this.handleChangeTags} placeholder="TAGS" value={this.state.tags}/>
+          <button onClick={this.onClickTags} disabled={this.state.disabledTagButton}>
             SUBMIT
           </button>
 
@@ -63,7 +80,7 @@ class App extends React.Component {
           <label htmlFor="search">enter any search terms seperated by commas</label>
           <i>e.g. Medium,Katy,Learn</i>
           <input id="search" onChange={this.handleChangeSearchTerms} placeholder="SEARCH TERMS" value={this.state.searchTerms}/>
-          <button onClick={this.onClickSearchTerms}>
+          <button onClick={this.onClickSearchTerms} disabled={this.state.disabledSearchButton}>
             SUBMIT
           </button>
 

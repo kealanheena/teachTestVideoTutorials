@@ -7,7 +7,7 @@
 import axios from 'axios'
 
 async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
-  if (tags === '') {
+  if (!tags) {
     return [];
   }
   

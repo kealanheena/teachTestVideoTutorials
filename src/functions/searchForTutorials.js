@@ -22,7 +22,7 @@ function searchForTutorials(keywords, data = []) {
 
     let i;
 
-    // Checks for mathcing tags
+    // Checks for matching tags
     for(i = 0; i < videoTags.length; i++) {
       const tag = videoTags[i];
       if(keywordsObject[tag.toUpperCase()]) {
@@ -30,7 +30,7 @@ function searchForTutorials(keywords, data = []) {
       }
     }
 
-    // Checks for mathcing title words
+    // Checks for matching title words
     // e.g. Practice: Places will check for both Practice and Places
     for(i = 0; i < seperatedVideoTitleWordsArray.length; i++) {
       const titleWord = seperatedVideoTitleWordsArray[i];
@@ -39,7 +39,7 @@ function searchForTutorials(keywords, data = []) {
       }
     }
 
-    // Checks for mathcing title and teacher name
+    // Checks for matching title and teacher name
     for(i = 0; i < keywordsArray.length; i++) {
       if(keywordsObject[videoTitle] || keywordsObject[teacherName]) {
         return video;

@@ -52,6 +52,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 input {
   color: #282c34;
   text-align: center;
