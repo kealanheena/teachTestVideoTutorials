@@ -8,7 +8,7 @@ import axios from 'axios'
 
 async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
   if (tags === '') {
-    return `Opps Seems you didn't input any tags`;
+    return [];
   }
   
   const tagsArray = tags.toUpperCase().split(',')

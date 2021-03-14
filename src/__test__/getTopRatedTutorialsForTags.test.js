@@ -89,7 +89,7 @@ describe('#getTopRatedTutorialsForTags', () => {
   test('it should return a string asking the user to enter some tags if an empty string is entered', async () => {
     const expected = await getTopRatedTutorialsForTags("");
 
-    expect(expected).toBe(`Opps Seems you didn't input any tags`);
+    expect(expected).toBe([]);
   });
 
   test('it should still return correct response when capitalization is inconsistent', async () => { 

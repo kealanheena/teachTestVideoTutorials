@@ -1,5 +1,5 @@
 import searchForTutorials from '../functions/searchForTutorials';
-import { mockData } from '../__test__/mock-data/mockData';
+import { mockData } from './mock-data/mockData';
 
 describe('#getTopRatedTutorialsForTags', () => {
 
