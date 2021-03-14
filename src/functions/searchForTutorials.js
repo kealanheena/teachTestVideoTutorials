@@ -8,18 +8,29 @@
 import { mockData } from '../__test__/mock-data/mockData';
 
 function searchForTutorials(keyWord) {
-  const returnData = mockData.filter((video)=> {
+  const searchResult = mockData.filter((video)=> {
+    const videoTagsObject = {};
+    const videoTitleWordsObject = {};
     const videoTitle = video.videoTitle;
     const videoTags = video.tags;
-    const seperatedVideoTitleArray = video.videoTitle.replace(/[^a-zA-Z ]/g, "").split(" ")
+    const videoTitleNoSpecialChars = video.videoTitle.replace(/[^a-zA-Z ]/g, "");
+    const seperatedVideoTitleWordsArray = videoTitleNoSpecialChars.split(" ");
 
-    if(videoTitle === keyWord || seperatedVideoTitleArray.includes(keyWord) || videoTags.includes(keyWord)) {
+    videoTags.forEach((tag) => {
+      videoTagsObject[tag] = true;
+    })
+    
+    seperatedVideoTitleWordsArray.forEach((word) => {
+      videoTitleWordsObject[word] = true;
+    })
+
+    if(videoTitle === keyWord || videoTitleWordsObject[keyWord] || videoTagsObject[keyWord]) {
       return [{videoTitle: keyWord}];
     }
     return false;
   })
 
-  return returnData
+  return searchResult;
 }
 
 export default searchForTutorials;
