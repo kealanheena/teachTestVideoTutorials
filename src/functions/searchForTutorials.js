@@ -8,15 +8,18 @@
 import { mockData } from '../__test__/mock-data/mockData';
 
 function searchForTutorials(keyWords) {
-  const keyWordsArray = keyWords.split(',');
+  const keyWordsArray = keyWords.toUpperCase().split(',');
   const searchResult = mockData.filter((video)=> {
     const videoTagsObject = {};
     const videoTitleWordsObject = {};
-    const videoTitle = video.videoTitle;
-    const videoTags = video.tags;
-    const teacherName = video.teacherName;
+    const videoTitle = video.videoTitle.toUpperCase();
+    const teacherName = video.teacherName.toUpperCase();
     const videoTitleNoSpecialChars = video.videoTitle.replace(/[^a-zA-Z ]/g, "");
-    const seperatedVideoTitleWordsArray = videoTitleNoSpecialChars.split(" ");
+    const seperatedVideoTitleWordsArray = videoTitleNoSpecialChars.toUpperCase().split(" ");
+
+    const videoTags = video.tags.map((tag) => {
+      return tag.toUpperCase()
+    });
 
     videoTags.forEach((tag) => {
       videoTagsObject[tag] = true;

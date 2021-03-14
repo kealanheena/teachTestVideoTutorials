@@ -34,6 +34,13 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Activity: Work');
     });
+
+    test('it should still return correct response when capitlization is inconsistant', () => {
+      const expected = searchForTutorials("PrActIce: plaCEs");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Practice: Places');
+    });
   });
 
   describe('if a keyword matches a one of the tags', () => {
