@@ -1,5 +1,5 @@
-import { mockData } from '../__test__/mock-data/data';
-import { mockDataOver20Videos } from '../__test__/mock-data/dataOver20Videos';
+import { mockData } from '../__test__/mock-data/mockData';
+import { mockDataOver20Videos } from '../__test__/mock-data/mockDataOver20Videos';
 import testConfig from '../__test__/testConfig';
 
 const axios = {
