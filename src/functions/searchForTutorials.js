@@ -13,6 +13,7 @@ function searchForTutorials(keyWord) {
     const videoTitleWordsObject = {};
     const videoTitle = video.videoTitle;
     const videoTags = video.tags;
+    const teacherName = video.teacherName;
     const videoTitleNoSpecialChars = video.videoTitle.replace(/[^a-zA-Z ]/g, "");
     const seperatedVideoTitleWordsArray = videoTitleNoSpecialChars.split(" ");
 
@@ -24,7 +25,7 @@ function searchForTutorials(keyWord) {
       videoTitleWordsObject[word] = true;
     })
 
-    if(videoTitle === keyWord || videoTitleWordsObject[keyWord] || videoTagsObject[keyWord]) {
+    if(videoTitle === keyWord || teacherName === keyWord || videoTitleWordsObject[keyWord] || videoTagsObject[keyWord]) {
       return [{videoTitle: keyWord}];
     }
     return false;
