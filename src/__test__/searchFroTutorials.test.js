@@ -60,11 +60,25 @@ describe('#getTopRatedTutorialsForTags', () => {
   });
 
   describe('if a keyword matches the teachers name', () => {
-    test('it should return an array with the "Practice: Places" video when "Medium" is given as an argument', () => {
+    test('it should return an array with the "Practice: Places" video when "Katy" is given as an argument', () => {
       const expected = searchForTutorials("Katy");
   
       expect(expected.length).toBe(1)
       expect(expected[0].videoTitle).toBe('Practice: Places');
+    });
+
+    test('it should return an array with the "Activity: Work" video when "Sam" is given as an argument', () => {
+      const expected = searchForTutorials("Sam");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Activity: Work');
+    });
+
+    test('it should return an array with the "Learn: Vehicles" video when "Trevor" is given as an argument', () => {
+      const expected = searchForTutorials("Trevor");
+  
+      expect(expected.length).toBe(1)
+      expect(expected[0].videoTitle).toBe('Learn: Vehicles');
     });
   });
 });
