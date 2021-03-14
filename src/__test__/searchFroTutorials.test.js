@@ -13,6 +13,12 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected).toStrictEqual([]);
   });
 
+  test('it should return an empty array when not keywords are given', () => {
+    const expected = searchForTutorials("", mockData);
+
+    expect(expected).toStrictEqual([]);
+  });
+
   describe('if a keyword matches a word in the title', () => {
     test('it should return an array with the "Practice: Places" video when "Practice: Places" is given as an argument', () => {
       const expected = searchForTutorials("Practice: Places", mockData);
