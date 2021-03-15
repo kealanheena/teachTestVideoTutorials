@@ -7,18 +7,8 @@
 import axios from 'axios'
 
 async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
-  if (!tags) {
-    return [];
-  }
-  
-  const tagsArray = tags.replace(/[^a-zA-Z,]/g, "").toUpperCase().split(',')
-  const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
-
-
-  tagsArray.forEach((tag) => {
-    tagsObject[tag] = true;
-  });
+  const tagsObject = {};
 
   function compare(itemA, itemB) {
     const videoRatingA = itemA.averageUserRating;
@@ -34,23 +24,36 @@ async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
   }
   
   try {
-    const filteredVideoData = await axios.get(videoApi).then((res) => {
-      return res.data.filter((data) => {
-        const dataTags = data.tags;
+    
+    const videoData = await axios.get(videoApi).then((res) => {
+      const data = res.data;
 
-        for(var i = 0; i < dataTags.length; i++) {
-          const capitalizedTags = dataTags[i].toUpperCase();
-          if(tagsObject[capitalizedTags]) {
-            return data;
+      if(tags) {
+        const tagsArray = tags.replace(/[^a-zA-Z,]/g, "").toUpperCase().split(',')
+     
+        tagsArray.forEach((tag) => {
+          tagsObject[tag] = true;
+        });
+
+        return data.filter((data) => {
+          const dataTags = data.tags;
+  
+          for(var i = 0; i < dataTags.length; i++) {
+            const capitalizedTags = dataTags[i].toUpperCase();
+            if(tagsObject[capitalizedTags]) {
+              return data;
+            }
           }
-        }
-        return false;
-      })
+          return false;
+        });
+      } else {
+        return data;
+      }
     });
 
-    const filteredOrderedVideoData = filteredVideoData.sort(compare);
+    const orderedVideoData = videoData.sort(compare);
     
-    return filteredOrderedVideoData.slice(0, amountOfVideos);
+    return orderedVideoData.slice(0, amountOfVideos);
   } catch(err) {
     console.log(err);
   }

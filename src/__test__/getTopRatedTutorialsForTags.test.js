@@ -86,19 +86,25 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected.length).toBe(15);
   });
 
-  test('it should return an empty array if an empty string is entered as an argument', async () => {
+  test('it should return an array with all the top 20 videos if an empty string is entered as an argument', async () => {
     const expected = await getTopRatedTutorialsForTags("");
 
-    expect(expected).toStrictEqual([]);
+    expect(expected.length).toBe(3);
+    expect(expected[0].videoTitle).toBe('Activity: Work');
+    expect(expected[1].videoTitle).toBe('Practice: Places');
+    expect(expected[2].videoTitle).toBe('Learn: Vehicles');
   });
   
-  test('it should return an empty array if undefined is entered as an argument', async () => {
+  test('it should return an array with all the top 20 videos if undefined is entered as an argument', async () => {
     const expected = await getTopRatedTutorialsForTags(undefined);
 
-    expect(expected).toStrictEqual([]);
+    expect(expected.length).toBe(3);
+    expect(expected[0].videoTitle).toBe('Activity: Work');
+    expect(expected[1].videoTitle).toBe('Practice: Places');
+    expect(expected[2].videoTitle).toBe('Learn: Vehicles');
   });
 
-  test.only('it should still return correct response when there is white space', async () => { 
+  test('it should still return correct response when there is white space', async () => { 
     const expected = await getTopRatedTutorialsForTags(" Medium, Hard , Passive");
 
     expect(expected.length).toBe(3);

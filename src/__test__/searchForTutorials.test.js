@@ -146,7 +146,7 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected[1].videoTitle).toBe('Learn: Vehicles');
     });
 
-    test.only('it should still return correct response when there is white space', () => {
+    test('it should still return correct response when there is white space', () => {
       const expected = searchForTutorials(" Trevor, Work", mockData);
   
       expect(expected.length).toBe(2)
