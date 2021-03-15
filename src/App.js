@@ -75,7 +75,7 @@ class App extends React.Component {
             SUBMIT
           </button>
 
-          <p className="Seperated-paragraph">after you've loaded some videos</p>
+          <p className="Divider">after you've loaded some videos</p>
 
           <label htmlFor="search">enter any search terms seperated by commas</label>
           <i>e.g. Medium,Katy,Learn</i>

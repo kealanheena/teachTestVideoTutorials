@@ -146,6 +146,14 @@ describe('#getTopRatedTutorialsForTags', () => {
       expect(expected[1].videoTitle).toBe('Learn: Vehicles');
     });
 
+    test.only('it should still return correct response when there is white space', () => {
+      const expected = searchForTutorials(" Trevor, Work", mockData);
+  
+      expect(expected.length).toBe(2)
+      expect(expected[0].videoTitle).toBe('Activity: Work');
+      expect(expected[1].videoTitle).toBe('Learn: Vehicles');
+    });
+
     test('it should still return correct response when capitalization is inconsistent', () => {
       const expected = searchForTutorials("TrEVor,WoRK", mockData);
   

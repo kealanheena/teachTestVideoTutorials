@@ -6,11 +6,11 @@
 // My Code Starts Here
 
 function searchForTutorials(keywords, data = []) {
-  const keywordsArray = keywords.toUpperCase().split(',');
+  const keywordsArray = keywords.trim().toUpperCase().split(',');
   const keywordsObject = {};
 
   keywordsArray.forEach((keyword) => {
-    keywordsObject[keyword] = true;
+    keywordsObject[keyword.trim()] = true;
   });
   
   const searchResult = data.filter((video)=> {

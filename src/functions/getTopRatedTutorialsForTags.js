@@ -11,7 +11,7 @@ async function getTopRatedTutorialsForTags(tags, amountOfVideos = 20) {
     return [];
   }
   
-  const tagsArray = tags.toUpperCase().split(',')
+  const tagsArray = tags.replace(/[^a-zA-Z,]/g, "").toUpperCase().split(',')
   const tagsObject = {};
   const videoApi = `https://lingumi-take-home-test-server.herokuapp.com/videoTutorials`;
 

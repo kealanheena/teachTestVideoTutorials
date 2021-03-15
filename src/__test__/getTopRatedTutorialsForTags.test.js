@@ -98,6 +98,15 @@ describe('#getTopRatedTutorialsForTags', () => {
     expect(expected).toStrictEqual([]);
   });
 
+  test.only('it should still return correct response when there is white space', async () => { 
+    const expected = await getTopRatedTutorialsForTags(" Medium, Hard , Passive");
+
+    expect(expected.length).toBe(3);
+    expect(expected[0].videoTitle).toBe('Activity: Work');
+    expect(expected[1].videoTitle).toBe('Practice: Places');
+    expect(expected[2].videoTitle).toBe('Learn: Vehicles');
+  });
+
   test('it should still return correct response when capitalization is inconsistent', async () => { 
     const expected = await getTopRatedTutorialsForTags("MEdIum");
 
