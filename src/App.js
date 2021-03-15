@@ -78,6 +78,23 @@ class App extends React.Component {
   }
 
   render() {
+    let pageBody;
+
+    if (this.state.displayData.length) {
+      pageBody = this.state.displayData.map((video) => {
+        const roundedAverageUserRating = Math.round(video.averageUserRating*100);
+    
+        return (
+        <div key={video.id} className={'Video-container'}>
+          <h1><a href={video.videoUrl} className={'App-link'}>{video.videoTitle}</a></h1>
+          <p>Teacher Name: {video.teacherName}</p>
+          <p>Rating: {roundedAverageUserRating}</p>
+        </div>
+        );
+      })
+    } else {
+      pageBody = <p>Oops, Seems like there was no results for your search maybe try something else</p>
+    }
     return (
       <div className="App">
         <div className="App-header">
@@ -102,17 +119,8 @@ class App extends React.Component {
             SUBMIT
           </button>
 
-          {this.state.displayData.map((video) => {
-            const roundedAverageUserRating = Math.round(video.averageUserRating*100);
+          {pageBody}
 
-            return (
-            <div key={video.id} className={'Video-container'}>
-              <h1><a href={video.videoUrl} className={'App-link'}>{video.videoTitle}</a></h1>
-              <p>Teacher Name: {video.teacherName}</p>
-              <p>Rating: {roundedAverageUserRating}</p>
-            </div>
-            );
-          })}
         {/* My Code Ends Here */}
         </div>
       </div>
