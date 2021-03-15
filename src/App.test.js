@@ -3,9 +3,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders innput box', () => {
+test('renders title', () => {
   render(<App />);
-  const searchElement = screen.getByText(/search/i);
+  const searchElement = screen.getByText(/Video Tutorials/i);
   expect(searchElement).toBeInTheDocument();
 });
 

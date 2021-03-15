@@ -103,7 +103,7 @@ class App extends React.Component {
           <button className="Refresh-api" onClick={this.refreshApi}>
             REFRESH API
           </button>
-          <label htmlFor="tags">enter tags seperated by commas</label>
+          <label htmlFor="tags">enter tags separated by commas</label>
           <i>e.g. Hard,Exciting,Passive</i>
           <input id="tags" onChange={this.handleChangeTags} placeholder="TAGS" value={this.state.tags}/>
           <button onClick={this.onClickTags} disabled={this.state.disabledTagButton}>
@@ -112,7 +112,7 @@ class App extends React.Component {
 
           <p className="Divider">after you've loaded some videos</p>
 
-          <label htmlFor="search">enter any search terms seperated by commas</label>
+          <label htmlFor="search">enter any search terms separated by commas</label>
           <i>e.g. Medium,Katy,Learn</i>
           <input id="search" onChange={this.handleChangeSearchTerms} placeholder="SEARCH TERMS" value={this.state.searchTerms}/>
           <button onClick={this.onClickSearchTerms} disabled={this.state.disabledSearchButton}>
