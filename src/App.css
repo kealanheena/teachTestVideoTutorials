@@ -32,6 +32,16 @@
   margin: 2px 0;
 }
 
+.Refresh-api {
+  background-color: #61dafb;
+  color: white;
+  font-weight: bold;
+  border-radius: 9px;
+  margin: 7px 0;
+  padding: 7px;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 2.3rem;
   margin: 5% 0;

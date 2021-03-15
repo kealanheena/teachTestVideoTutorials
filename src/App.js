@@ -16,10 +16,27 @@ class App extends React.Component {
       disabledSearchButton: true
     };
 
+    this.refreshApi = this.refreshApi.bind(this);
     this.handleChangeTags = this.handleChangeTags.bind(this);
     this.onClickTags = this.onClickTags.bind(this);
     this.handleChangeSearchTerms = this.handleChangeSearchTerms.bind(this);
     this.onClickSearchTerms = this.onClickSearchTerms.bind(this);
+  }
+
+  async componentDidMount() {
+    const updatedData = await getTopRatedTutorialsForTags();
+    this.setState({ 
+      data: updatedData,
+      displayData: updatedData
+    });
+  }
+
+  async refreshApi() {
+    const updatedData = await getTopRatedTutorialsForTags();
+    this.setState({ 
+      data: updatedData,
+      displayData: updatedData
+    });
   }
 
   handleChangeTags(event) {
@@ -33,13 +50,11 @@ class App extends React.Component {
   }
 
   async onClickTags() {
-    const updatedData = await getTopRatedTutorialsForTags(this.state.tags);
+    const updatedData = await getTopRatedTutorialsForTags(this.state.tags.trim());
     this.setState({ 
       data: updatedData,
       displayData: updatedData
     });
-
-
   }
 
   handleChangeSearchTerms(event) {
@@ -68,6 +83,9 @@ class App extends React.Component {
         <div className="App-header">
         {/* My Code Starts Here */}
           <h1 className="Title">Video Tutorials</h1>
+          <button className="Refresh-api" onClick={this.refreshApi}>
+            REFRESH API
+          </button>
           <label htmlFor="tags">enter tags seperated by commas</label>
           <i>e.g. Hard,Exciting,Passive</i>
           <input id="tags" onChange={this.handleChangeTags} placeholder="TAGS" value={this.state.tags}/>
